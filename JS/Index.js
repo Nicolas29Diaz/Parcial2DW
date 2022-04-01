@@ -15,6 +15,25 @@ function insertarArtista(){
     let imgInput = document.getElementById("imgInput").value;
     let spotifyInput = document.getElementById("spotifyInput").value;
 
+    //Contenedor Principal
+    let contArtista = document.getElementById("contArtista");
+
+    const newArtista = new Artista(nombreInput,descInput,imgInput,spotifyInput);
+    
+    contArtista.innerHTML += `<div id="artista1" class="artista"><div><img src="${newArtista.imgArtista}" alt=""></div><div><p><h1>${newArtista.nombreArtista}</h1><br>${newArtista.descripcionArtista}</p></div><div>${spotifyInput}</div></div>`
+
+}
+
+
+
+//Tambien sirve pero ps mas largo, no se que prefiera el profesor
+function insertarArtista2(){
+    //Obtener Valores
+    let nombreInput = document.getElementById("nombreInput").value;
+    let descInput = document.getElementById("descInput").value;
+    let imgInput = document.getElementById("imgInput").value;
+    let spotifyInput = document.getElementById("spotifyInput").value;
+
     //Crear HTML
     //Contenedor Principal
     let contArtista = document.getElementById("contArtista");
@@ -46,5 +65,6 @@ function insertarArtista(){
 
     const newArtista = new Artista(nombreInput,descInput,imgInput,spotifyInput);
 
-    console.log(`Nombre ${newArtista.nombreArtista} Desc ${newArtista.descripcionArtista} `);
+    console.log(`Nombre ${newArtista.nombreArtista} Desc ${newArtista.descripcionArtista} `); 
+
 }
