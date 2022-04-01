@@ -36,12 +36,12 @@ function insertarArtista(){
     let parrafo = document.createElement("p");
     divArtista.appendChild(divDesc);
     divDesc.appendChild(parrafo);
-    parrafo.innerHTML = descInput;
+    parrafo.innerHTML = `<h1>${nombreInput}</h1>${descInput}`;
 
     //SpotyList dentro del grid
     let divSpoty = document.createElement("div");
     divArtista.appendChild(divSpoty);
-    divSpoty.innerHTML = "Aquí de alguna manera irá la lista de spoty";
+    divSpoty.innerHTML = spotifyInput;
     
 
     const newArtista = new Artista(nombreInput,descInput,imgInput,spotifyInput);
