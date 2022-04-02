@@ -22,25 +22,37 @@ function insertarArtista(){
 
     const newArtista = new Artista(nombreInput,descInput,imgInput,spotifyInput);
     
-    contArtista.innerHTML += `<div id="artista1" class="artista"><div><img src="${imgInput}" alt=""></div><div><p><h1>${newArtista.nombreArtista}</h1><br>${newArtista.descripcionArtista}</p></div><div>${spotifyInput}</div></div>`
+    contArtista.innerHTML += `<div id="artista1" class="artista"><div><img class="imagen" src="${imgInput}" alt=""></div><div><p><h1>${newArtista.nombreArtista}</h1><br>${newArtista.descripcionArtista}</p></div><div>${spotifyInput}</div></div>`
 
     
     listaArtistas.push(new Artista(nombreInput,descInput,imgInput,spotifyInput));
     console.log(listaArtistas);
 
+
 }
 
 //Para practiar
-function buscarArtista(){
+function cambiarImagenArtista(){
 
     let nombreInput = document.getElementById("nombreInput").value;
-    let busquedaArtista = false;
+    let imgInput = document.getElementById("imgInput").value;
 
+    let busquedaArtista = false;
+    
+    let imghtml = document.getElementsByClassName('imagen');
+  
     for(let i=0;i < listaArtistas.length;i++){
 
-        if(listaArtistas[i].nombreArtista == nombreInput){
+        if(listaArtistas[i].nombreArtista.toUpperCase() == nombreInput.toUpperCase()){
             console.log(`El artista ${listaArtistas[i].nombreArtista} se encuentra disponible`);
             busquedaArtista = true;
+
+            listaArtistas[i].imgArtista = imgInput;
+            console.log(listaArtistas)
+            
+            console.log(imghtml[i].src);
+            imghtml[i].src = imgInput;
+
         }
     }
 
