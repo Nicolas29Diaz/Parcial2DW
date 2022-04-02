@@ -14,98 +14,96 @@ class Artista{
     // }
 }
 
-//Lista de artistas
 let listaArtistas = new Array();
 
-function insertarArtista(){
-    //Obtener Valores
-    let nombreInput = document.getElementById("nombreInput").value;
-    let descInput = document.getElementById("descInput").value;
-    let imgInput = document.getElementById("imgInput").value;
-    let spotifyInput = document.getElementById("spotifyInput").value;
-
-    //Contenedor Principal
-    let contArtista = document.getElementById("contArtista");
-
-    const newArtista = new Artista(nombreInput,descInput,imgInput,spotifyInput);
-    //newArtista.htmlArtista();
+function buscarArtista(){
     
-    contArtista.innerHTML += `<div id="artista1" class="artista"><div><img class="imagen" src="${imgInput}" alt=""></div><div><p><h1>${newArtista.nombreArtista}</h1><br>${newArtista.descripcionArtista}</p></div><div>${spotifyInput}</div></div>`
-
-    listaArtistas.push(new Artista(nombreInput,descInput,imgInput,spotifyInput));
-    console.log(listaArtistas);
-
-
-}
-
-//Para practiar, lo que se puede hacer es hacer una funcion para buscar que devuelva el "i" y asi se ahorra lineas de codigo
-function cambiarImagenArtista(){
-
     let nombreInput = document.getElementById("nombreInput").value;
-    let imgInput = document.getElementById("imgInput").value;
-
     let busquedaArtista = false;
-    
-    let imghtml = document.getElementsByClassName('imagen');
-  
+    let index;
     for(let i=0;i < listaArtistas.length;i++){
 
         if(listaArtistas[i].nombreArtista.toUpperCase() == nombreInput.toUpperCase()){
             console.log(`El artista ${listaArtistas[i].nombreArtista} se encuentra disponible`);
             busquedaArtista = true;
-
-            listaArtistas[i].imgArtista = imgInput;
             console.log(listaArtistas)
-            
-            // listaArtistas[i].htmlArtista(); aca lo que hace es crear otro html
-            
-            /console.log(imghtml[i].src);
-            imghtml[i].src = imgInput;
-
+            index = i;
         }
     }
-
     if(!busquedaArtista){
         console.log(`El artista ${nombreInput} no se encuentra disponible`);
     }
+
+    return [index, busquedaArtista];
+}
+
+function insertarArtista(){
+
+    let artistaEncontrado = buscarArtista()[1];
+    if(artistaEncontrado){
+
+        console.log("El artista ya existe")
+
+    }else{
+      
+        let nombreInput = document.getElementById("nombreInput").value;
+        let descInput = document.getElementById("descInput").value;
+        let imgInput = document.getElementById("imgInput").value;
+        let spotifyInput = document.getElementById("spotifyInput").value;
+        let contArtista = document.getElementById("contArtista");
+        const newArtista = new Artista(nombreInput,descInput,imgInput,spotifyInput);
+
+        contArtista.innerHTML += `<div class="artista"><div><img class="imagen" src="${imgInput}" alt=""></div><div><p><h1>${newArtista.nombreArtista}</h1><br>${newArtista.descripcionArtista}</p></div><div>${spotifyInput}</div></div>`;
+
+        listaArtistas.push(newArtista);
+        console.log(listaArtistas);
+
+    }
+
+}
+
+function cambiarImagenArtista(){ 
+
+    let imgInput = document.getElementById("imgInput").value;
+    let imghtml = document.getElementsByClassName('imagen');
+    let i = buscarArtista()[0];
+    listaArtistas[i].imgArtista = imgInput;
+    imghtml[i].src = imgInput;
 
 }
 
 function borrarArtista(){
 
-    let nombreInput = document.getElementById("nombreInput").value;
-    let imgInput = document.getElementById("imgInput").value;
-
-    let busquedaArtista = false;
-    
     let artistahtml = document.getElementsByClassName('artista');
-  
-    for(let i=0;i < listaArtistas.length;i++){
-
-        if(listaArtistas[i].nombreArtista.toUpperCase() == nombreInput.toUpperCase()){
-            console.log(`El artista ${listaArtistas[i].nombreArtista} se encuentra disponible`);
-            busquedaArtista = true;
-
-            listaArtistas[i].imgArtista = imgInput;
-           
-        
-            artistahtml[i].remove();
-
-            listaArtistas.splice(i, 1); //Borrar de la lista de artistas
-
-            console.log(listaArtistas) //Borrar html
-
-            //Aun no se como funciona el localhost, pero en teoria deberia pasarsele la lista de Artistas
-        }
-    }
-
-    if(!busquedaArtista){
-        console.log(`El artista ${nombreInput} no se encuentra disponible`);
-    }
+    let i = buscarArtista()[0];
+    artistahtml[i].remove(); //Borrar html
+    listaArtistas.splice(i, 1); //Borrar de la lista de artistas
+    console.log(listaArtistas) 
 
 }
 
+function guardarLocalStorage(){ 
 
+    localStorage.setItem("Artista", JSON.stringify(listaArtistas));
+
+}
+
+function leerLocalStorage(){
+
+    listaArtistas = JSON.parse(localStorage.getItem("Artista"));
+
+    for(let i = 0; i < listaArtistas.length; i++){
+
+        contArtista.innerHTML += `<div class="artista"><div><img class="imagen" src="${listaArtistas[i].imgArtista}" alt=""></div><div><p><h1>${listaArtistas[i].nombreArtista}</h1><br>${listaArtistas[i].descripcionArtista}</p></div><div>${listaArtistas[i].spotifyArtista}</div></div>`
+
+    }
+    
+}
+
+function consolazo(){
+    console.log(listaArtistas);
+}
+leerLocalStorage(); //Al parecer el localstorage cambia dependiendo el navegador
 
 
 //Tambien sirve pero ps mas largo, no se que prefiera el profesor
