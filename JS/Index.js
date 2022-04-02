@@ -7,6 +7,8 @@ class Artista{
     }
 }
 
+//Lista de artistas
+let listaArtistas = new Array();
 
 function insertarArtista(){
     //Obtener Valores
@@ -20,9 +22,34 @@ function insertarArtista(){
 
     const newArtista = new Artista(nombreInput,descInput,imgInput,spotifyInput);
     
-    contArtista.innerHTML += `<div id="artista1" class="artista"><div><img src="${newArtista.imgArtista}" alt=""></div><div><p><h1>${newArtista.nombreArtista}</h1><br>${newArtista.descripcionArtista}</p></div><div>${spotifyInput}</div></div>`
+    contArtista.innerHTML += `<div id="artista1" class="artista"><div><img src="${imgInput}" alt=""></div><div><p><h1>${newArtista.nombreArtista}</h1><br>${newArtista.descripcionArtista}</p></div><div>${spotifyInput}</div></div>`
+
+    
+    listaArtistas.push(new Artista(nombreInput,descInput,imgInput,spotifyInput));
+    console.log(listaArtistas);
 
 }
+
+//Para practiar
+function buscarArtista(){
+
+    let nombreInput = document.getElementById("nombreInput").value;
+    let busquedaArtista = false;
+
+    for(let i=0;i < listaArtistas.length;i++){
+
+        if(listaArtistas[i].nombreArtista == nombreInput){
+            console.log(`El artista ${listaArtistas[i].nombreArtista} se encuentra disponible`);
+            busquedaArtista = true;
+        }
+    }
+
+    if(!busquedaArtista){
+        console.log(`El artista ${nombreInput} no se encuentra disponible`);
+    }
+
+}
+
 
 
 
