@@ -105,7 +105,6 @@ function consolazo(){
 }
 leerLocalStorage(); //Al parecer el localstorage cambia dependiendo el navegador
 
-
 //Tambien sirve pero ps mas largo, no se que prefiera el profesor
 function insertarArtista2(){
     //Obtener Valores
@@ -148,3 +147,8 @@ function insertarArtista2(){
     console.log(`Nombre ${newArtista.nombreArtista} Desc ${newArtista.descripcionArtista} `); 
 
 }
+
+
+
+//Hacer lo de inicio de sesion, en caso de ser admin salen los botones e inputs de control, 
+//en caso de no se quitam, display:none o algo asi, supongo que es un if no es admin display none else display normal :v
