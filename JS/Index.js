@@ -18,6 +18,7 @@ let listaArtistas = new Array();
 
 function buscarArtista(){
     
+    console.log(listaArtistas);
     let nombreInput = document.getElementById("nombreInput").value;
     let busquedaArtista = false;
     let index;
@@ -64,11 +65,14 @@ function insertarArtista(){
 
 function cambiarImagenArtista(){ 
 
-    let imgInput = document.getElementById("imgInput").value;
+    let imgInput = document.getElementById("imgInput");
+    console.log(imgInput.files[0].name)
+    let rutaIMg = "../SRC/IMG/"+ imgInput.files[0].name;      //ACA EL REQUISITO ES QUE SEA ARRASTRADO DESDE
+                                                              //LA CARPETA DE IMG PARA PODER GUARDAR LA RUTA
     let imghtml = document.getElementsByClassName('imagen');
     let i = buscarArtista()[0];
-    listaArtistas[i].imgArtista = imgInput;
-    imghtml[i].src = imgInput;
+    listaArtistas[i].imgArtista = rutaIMg;
+    imghtml[i].src = rutaIMg;
 
 }
 
@@ -76,6 +80,7 @@ function borrarArtista(){
 
     let artistahtml = document.getElementsByClassName('artista');
     let i = buscarArtista()[0];
+    console.log(i);
     artistahtml[i].remove(); //Borrar html
     listaArtistas.splice(i, 1); //Borrar de la lista de artistas
     console.log(listaArtistas) 
