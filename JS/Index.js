@@ -5,87 +5,145 @@ class Artista{
         this.imgArtista = imgArtista;
         this.spotifyArtista = spotifyArtista;
     }
-    // htmlArtista(){
-    //     console.log("Artista: " + this.nombreArtista);
+   
 
-    //     let contArtista = document.getElementById("contArtista");
-    //     contArtista.innerHTML += `<div id="artista1" class="artista"><div><img class="imagen" src="${this.imgArtista}" alt=""></div><div><p><h1>${this.nombreArtista}</h1><br>${this.descripcionArtista}</p></div><div>${this.spotifyArtista}</div></div>`
-
-    // }
 }
 
 let listaArtistas = new Array();
 
-function buscarArtista(){
-    
-    console.log(listaArtistas);
-    let nombreInput = document.getElementById("nombreInput").value;
-    let busquedaArtista = false;
-    let index;
-    for(let i=0;i < listaArtistas.length;i++){
-
-        if(listaArtistas[i].nombreArtista.toUpperCase() == nombreInput.toUpperCase()){
-            console.log(`El artista ${listaArtistas[i].nombreArtista} se encuentra disponible`);
-            busquedaArtista = true;
-            console.log(listaArtistas)
-            index = i;
-        }
-    }
-    if(!busquedaArtista){
-        console.log(`El artista ${nombreInput} no se encuentra disponible`);
-    }
-
-    return [index, busquedaArtista];
-}
+leerLocalStorageAdmin();
 
 function insertarArtista(){
 
-    let artistaEncontrado = buscarArtista()[1];
-    if(artistaEncontrado){
-
-        console.log("El artista ya existe")
-
-    }else{
+       
       
         let nombreInput = document.getElementById("nombreInput").value;
         let descInput = document.getElementById("descInput").value;
-        let imgInput = document.getElementById("imgInput").value;
+        let imgInput = document.getElementById("imgInput");
+        let rutaIMg = "../SRC/IMG/"+ imgInput.files[0].name;
         let spotifyInput = document.getElementById("spotifyInput").value;
         let contArtista = document.getElementById("contArtista");
-        const newArtista = new Artista(nombreInput,descInput,imgInput,spotifyInput);
-
-        contArtista.innerHTML += `<div class="artista"><div><img class="imagen" src="${imgInput}" alt=""></div><div><p><h1>${newArtista.nombreArtista}</h1><br>${newArtista.descripcionArtista}</p></div><div>${spotifyInput}</div></div>`;
-
+        const newArtista = new Artista(nombreInput,descInput,rutaIMg,spotifyInput);
+    
+        contArtista.innerHTML += `<div class="artista" id="${listaArtistas.length}"><div class="nombreArtista"><h1>${newArtista.nombreArtista}</h1></div><div class="icono"><img src="../SRC/IMG/edit.png" alt="Editar" onclick="abrirVentanaEditarArtista(this)"><img src="../SRC/IMG/garbage.png" alt="Borrar" onclick="abrirVentanaBorrarArtista(this)"></div></div>`;
         listaArtistas.push(newArtista);
         console.log(listaArtistas);
 
-    }
+
+            
+        
+
+        guardarLocalStorage();
+        cerrarVentana();
+   
+}
+
+
+
+// function editarArtista(){
+//     let index = cont.parentNode.parentNode.id;
+
+    
+//     return index;
+// }
+
+
+let overlay = document.getElementById('overlay');
+let	popup = document.getElementById('popup');
+let overlay2 = document.getElementById('overlay2');
+let	popup2 = document.getElementById('popup2');
+let idArtista = 0;  
+
+function abrirVentanaEditarArtista(cont){
+
+    //PARA QUE EL BOTON CAMBIE A INVOCAR ACEPTAR CAMBIO ARTISTA
+    let cambioBoton = document.getElementById("botonContinuar");
+    cambioBoton.setAttribute("onclick","aceptarCambioArtista()");
+
+    idArtista = cont.parentNode.parentNode.id;
+    document.getElementById("nombreInput").value = listaArtistas[idArtista].nombreArtista;
+    document.getElementById("descInput").value = listaArtistas[idArtista].descripcionArtista;
+    document.getElementById("spotifyInput").value = listaArtistas[idArtista].spotifyArtista;
+    document.getElementById("imgInput").value = null;
+    // document.getElementById("imgInput").value = listaArtistas[idArtista].imgArtista;
+    overlay.classList.add('active');
+	popup.classList.add('active');
+    
+    console.log(idArtista);
 
 }
 
-function cambiarImagenArtista(){ 
+function abrirVentanaInsertarArtista(){
+    //PARA QUE EL BOTON CAMBIE A INVOCAR INSERTAR ARTISTA
+    let cambioBoton = document.getElementById("botonContinuar");
+    cambioBoton.setAttribute("onclick","insertarArtista()");
+    //Limpiar inputs
+    document.getElementById("nombreInput").value = "";
+    document.getElementById("descInput").value = "";
+    document.getElementById("spotifyInput").value = "";
+    document.getElementById("imgInput").value = null;
 
-    let imgInput = document.getElementById("imgInput");
-    console.log(imgInput.files[0].name)
-    let rutaIMg = "../SRC/IMG/"+ imgInput.files[0].name;      //ACA EL REQUISITO ES QUE SEA ARRASTRADO DESDE
-                                                              //LA CARPETA DE IMG PARA PODER GUARDAR LA RUTA
-    let imghtml = document.getElementsByClassName('imagen');
-    let i = buscarArtista()[0];
-    listaArtistas[i].imgArtista = rutaIMg;
-    imghtml[i].src = rutaIMg;
+    overlay.classList.add('active');
+	popup.classList.add('active');
+}
+function abrirVentanaBorrarArtista(cont){
 
+    idArtista = cont.parentNode.parentNode.id;
+    overlay2.classList.add('active');
+	popup2.classList.add('active');
 }
 
 function borrarArtista(){
 
     let artistahtml = document.getElementsByClassName('artista');
-    let i = buscarArtista()[0];
-    console.log(i);
-    artistahtml[i].remove(); //Borrar html
-    listaArtistas.splice(i, 1); //Borrar de la lista de artistas
+    artistahtml[idArtista].remove(); //Borrar html
+    listaArtistas.splice(idArtista, 1); //Borrar de la lista de artistas
     console.log(listaArtistas) 
 
+    //PARA QUE EL ID SE ACTUAlICE COMO EL ARRAY TOCA RECARGAR LA PAGINA :V
+    guardarLocalStorage();
+    location.reload();
+
 }
+
+function aceptarCambioArtista(){
+
+    listaArtistas[idArtista].nombreArtista = document.getElementById("nombreInput").value;
+    listaArtistas[idArtista].descripcionArtista = document.getElementById("descInput").value;
+
+    let rutaIMg;
+    try {
+        let imgInput = document.getElementById("imgInput");
+        rutaIMg = "../SRC/IMG/"+ imgInput.files[0].name;
+       
+    } catch (error) {
+        console.log("Error")
+        rutaIMg = listaArtistas[idArtista].imgArtista;
+
+    }
+   
+
+    listaArtistas[idArtista].imgArtista = rutaIMg;
+    
+    listaArtistas[idArtista].spotifyArtista = document.getElementById("spotifyInput").value;
+
+
+
+
+    guardarLocalStorage();
+    location.reload();
+}
+
+function cerrarVentana(){
+
+    overlay.classList.remove('active');
+	popup.classList.remove('active');
+    overlay2.classList.remove('active');
+	popup2.classList.remove('active');
+}
+
+
+
 
 function guardarLocalStorage(){ 
 
@@ -93,67 +151,29 @@ function guardarLocalStorage(){
 
 }
 
-function leerLocalStorage(){
+function leerLocalStorageAdmin(){
 
-    listaArtistas = JSON.parse(localStorage.getItem("Artista"));
 
-    for(let i = 0; i < listaArtistas.length; i++){
+  //  try {
 
-        contArtista.innerHTML += `<div class="artista"><div><img class="imagen" src="${listaArtistas[i].imgArtista}" alt=""></div><div><p><h1>${listaArtistas[i].nombreArtista}</h1><br>${listaArtistas[i].descripcionArtista}</p></div><div>${listaArtistas[i].spotifyArtista}</div></div>`
+        listaArtistas = JSON.parse(localStorage.getItem("Artista"));
+       ;
+    if(listaArtistas == null){
 
+        listaArtistas = new Array(0);
+        console.log(listaArtistas)
+
+    }else{
+        for(let i = 0; i < listaArtistas.length; i++){
+
+            contArtista.innerHTML += `<div class="artista" id="${i}"><div class="nombreArtista"><h1>${listaArtistas[i].nombreArtista}</h1></div><div class="icono"><img src="../SRC/IMG/edit.png" alt="Editar" onclick="abrirVentanaEditarArtista(this)"><img src="../SRC/IMG/garbage.png" alt="Borrar" onclick="abrirVentanaBorrarArtista(this)"></div></div>`; 
+           
+         }
     }
-    
-}
-
-function consolazo(){
-    console.log(listaArtistas);
-}
-leerLocalStorage(); //Al parecer el localstorage cambia dependiendo el navegador
-
-//Tambien sirve pero ps mas largo, no se que prefiera el profesor
-function insertarArtista2(){
-    //Obtener Valores
-    let nombreInput = document.getElementById("nombreInput").value;
-    let descInput = document.getElementById("descInput").value;
-    let imgInput = document.getElementById("imgInput").value;
-    let spotifyInput = document.getElementById("spotifyInput").value;
-
-    //Crear HTML
-    //Contenedor Principal
-    let contArtista = document.getElementById("contArtista");
-
-    //Grid de cada artista
-    let divArtista = document.createElement("div");
-    divArtista.setAttribute("class","artista")
-    contArtista.appendChild(divArtista);
-
-    //Imagen dentro del grid
-    let divImg = document.createElement("div");
-    let img = document.createElement("img");
-    img.setAttribute("src",imgInput)
-    divArtista.appendChild(divImg);
-    divImg.appendChild(img);
-
-    //Descripcion dentro del grid
-    let divDesc = document.createElement("div");
-    let parrafo = document.createElement("p");
-    divArtista.appendChild(divDesc);
-    divDesc.appendChild(parrafo);
-    parrafo.innerHTML = `<h1>${nombreInput}</h1>${descInput}`;
-
-    //SpotyList dentro del grid
-    let divSpoty = document.createElement("div");
-    divArtista.appendChild(divSpoty);
-    divSpoty.innerHTML = spotifyInput;
+        
+    // } catch (error) {
+    //     console.log("Error")
+    // }
     
 
-    const newArtista = new Artista(nombreInput,descInput,imgInput,spotifyInput);
-
-    console.log(`Nombre ${newArtista.nombreArtista} Desc ${newArtista.descripcionArtista} `); 
-
 }
-
-
-
-//Hacer lo de inicio de sesion, en caso de ser admin salen los botones e inputs de control, 
-//en caso de no se quitam, display:none o algo asi, supongo que es un if no es admin display none else display normal :v
