@@ -39,15 +39,6 @@ function insertarArtista(){
 }
 
 
-
-// function editarArtista(){
-//     let index = cont.parentNode.parentNode.id;
-
-    
-//     return index;
-// }
-
-
 let overlay = document.getElementById('overlay');
 let	popup = document.getElementById('popup');
 let overlay2 = document.getElementById('overlay2');
@@ -141,8 +132,6 @@ function cerrarVentana(){
     overlay2.classList.remove('active');
 	popup2.classList.remove('active');
 }
-
-
 
 
 function guardarLocalStorage(){ 

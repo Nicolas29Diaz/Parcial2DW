@@ -8,7 +8,7 @@ function leerLocalStorageUsuario(){
     if(listaArtistas.length != 0){
         for(let i = 0; i < listaArtistas.length; i++){
 
-            contArtista.innerHTML += `<div class="artista"><div><img class="imagen" src="${listaArtistas[i].imgArtista}" alt=""></div><div><p><h1>${listaArtistas[i].nombreArtista}</h1><br>${listaArtistas[i].descripcionArtista}</p></div><div>${listaArtistas[i].spotifyArtista}</div></div>`
+            contArtista.innerHTML += `<div class="artista"><div class="contImg"><img class="imagen" src="${listaArtistas[i].imgArtista}" alt=""></div><div class="contDesc"><h1>${listaArtistas[i].nombreArtista}</h1><p><br>${listaArtistas[i].descripcionArtista}</p></div><div class="contListaSpotify">${listaArtistas[i].spotifyArtista}</div></div>`
 
         }
     }else{

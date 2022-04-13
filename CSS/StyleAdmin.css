@@ -28,6 +28,8 @@ body{
     align-items: center;
     /* justify-items: center; */
     /* border: solid red; */
+
+	transition: all 0.3s;
 }
 
 .nombreArtista{
@@ -127,9 +129,36 @@ body{
 
 
 
+@media only screen and (max-width:500px){
 
+	.artista{
+		display: grid;
+		grid-template-columns: 2fr ;
+		gap: 10px;
+		border-radius: 15px;
+		margin: auto;
+		margin: 3%;
+		background-color: rgb(255, 255, 255);
+		justify-content: center;
+		align-items: center;
+		/* justify-items: center; */
+		/* border: solid red; */
+	}
 
-
+	.icono img{
+        width: 15%;
+        height: 15%;
+        margin: auto;
+        transition: all 0.3s;
+		padding-bottom: 5%;
+     
+    }
+    .icono img:hover{
+        width: 18%;
+        height: 18%;
+    }
+    
+}
 
 
 
