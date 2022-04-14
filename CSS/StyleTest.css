@@ -1,0 +1,267 @@
+/* Para probar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+/* font-family: 'Open Sans', sans-serif; */
+
+body{
+    margin: 0;
+    background-color: black;
+    padding: 5% 0;
+}
+section{
+    padding-bottom: 5%;
+}
+
+
+/* PARA LAS PREGUNTAS */
+.contPregunta{
+    height: 200px;   
+}
+.divPreg{
+
+    /* Display flex facilita todo creo */
+    display: flex;
+    height: 100%;
+    width: 90%;
+    margin: auto;
+	background-color: rgb(98, 181, 187);
+    border-radius: 15px;
+    box-shadow: 1px 1px 7px 4px rgb(98, 181, 187);; 
+	
+    /* Para centrar */
+    justify-content: center;
+    align-items: center;
+
+}
+
+.divPreg p{
+    text-align: center;
+    margin: 0;
+    padding: 0 5%;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 200%;
+}
+
+@media (max-width:300px) {
+    .divPreg p{
+        font-size: 100%;
+    }
+    
+}
+
+
+
+/* PARA LAS RESPUESTAS */
+
+.contRespuestas{
+    height: 300px;
+    margin: 0;
+}
+
+.divRespuestas{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+    gap: 25px;
+    width: 95%;
+    margin: auto; /*Parece ser la unica forma de centrar eso*/
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+    
+
+}
+.botonRespuestas{
+    
+    /* background-color: rgba(255,202,116,255);  SE LE PUEDE DAR UN COLOR DIFERENTE A CADA RESPUESTA, SOLO SERIA LLAMAR EL ID*/
+    border-radius: 10px;
+    /* box-shadow: 1px 1px 7px 4px white; */
+    border: none;
+    width: 90%;
+    height: 90%;
+    transition: all 0.3s;
+
+   
+}
+.botonRespuestas:hover{
+    width: 95%;
+    height: 95%;
+	background-color: rgb(98, 181, 187);
+	box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgb(98, 181, 187);
+
+}
+
+.botonRespuestas p{
+    text-align: center;
+    margin: 0;
+    padding: 0 10%;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 200%;
+}
+
+@media (max-width:600px) {
+    .divRespuestas{
+        grid-template-columns: 1fr;
+        height: 400px;
+
+    }
+    .botonRespuestas{
+        width: 95%;
+        height: 95%;
+    }
+    .botonRespuestas:hover{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+
+
+.contContador{
+    border: solid red;
+}
+
+
+
+
+
+
+/* Ventana emergente (COPIAR PEGAR PARA NO MATARME)*/
+.overlay {
+	background: rgba(0,0,0,.3);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	visibility: hidden;
+    
+}
+
+.overlay.active {
+	visibility: visible;
+}
+
+.popup {
+	background: #F8F8F8;
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+	border-radius: 3px;
+	font-family: 'Montserrat', sans-serif;
+	padding: 20px;
+	text-align: center;
+	width: 600px;
+	
+	transition: .3s ease all;
+	transform: scale(0.7);
+	opacity: 0;
+
+    border-radius: 10px;
+}
+@media (max-width:700px){
+    .popup {
+        width: 300px;
+    }
+}
+.popup .btn-cerrar-popup {
+	font-size: 16px;
+	line-height: 16px;
+	display: block;
+	text-align: right;
+	transition: .3s ease all;
+	color: #BBBBBB;
+}
+
+.popup .btn-cerrar-popup:hover {
+	color: #000;
+}
+
+.popup h3 {
+	font-size: 36px;
+	font-weight: 600;
+	margin-bottom: 10px;
+	opacity: 0;
+}
+
+.popup h4 {
+	font-size: 26px;
+	font-weight: 300;
+	margin-bottom: 40px;
+	opacity: 0;
+}
+
+.popup form .contenedor-inputs {
+	opacity: 0;
+}
+
+.popup form .contenedor-inputs input {
+	width: 100%;
+	margin-bottom: 20px;
+	height: 52px;
+	font-size: 18px;
+	line-height: 52px;
+	text-align: center;
+	border: 1px solid #BBBBBB;
+}
+
+.btn-submit {
+	padding: 0 20px;
+	height: 40px;
+	line-height: 40px;
+	border: none;
+	color: #fff;
+	background: #5E7DE3;
+	border-radius: 3px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+	cursor: pointer;
+	transition: .3s ease all;
+}
+
+.btn-submit:hover {
+	background: rgba(94,125,227, .9);
+}
+
+/* ------------------------- */
+/* ANIMACIONES */
+/* ------------------------- */
+.popup.active {	transform: scale(1); opacity: 1; }
+.popup.active h3 { animation: entradaTitulo .2s ease .2s forwards; }
+.popup.active h4 { animation: entradaSubtitulo .2s ease .2s forwards; }
+.popup.active .contenedor-inputs { animation: entradaInputs 1s linear 1s forwards; }
+
+@keyframes entradaTitulo {
+	from {
+		opacity: 0;
+		transform: translateY(-25px);
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes entradaSubtitulo {
+	from {
+		opacity: 0;
+		transform: translateY(25px);
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes entradaInputs {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+
+			
