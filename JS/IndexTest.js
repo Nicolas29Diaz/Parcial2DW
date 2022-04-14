@@ -69,7 +69,7 @@ let contPreguntas = 0;
 let rellenoBarra = 0;
 preguntar();
 getDocumet("resMalas").innerHTML = `${resIncorrectas}/${cantidadMaxMalas}`;
-
+getDocumet("resBuenas").innerHTML = `${resCorrectas}/${cantidadPreg}`;
 function verificarQueNoSeRepita(){
     let bool;
 
@@ -146,6 +146,7 @@ function botonOprimido(i){
         
         retroalimentacion = "Correcto!";
         abrirVentana();
+        getDocumet("resBuenas").innerHTML = `${resCorrectas}/${cantidadPreg}`;
     }else{
         resIncorrectas++;
         getDocumet("resMalas").innerHTML = `${resIncorrectas}/${cantidadMaxMalas}`;

@@ -171,12 +171,24 @@ section{
 
     font-size: 3vw;
     color: white;
-    margin-left: 30vw;
+    margin-left: 5vw;
     font-family: 'ZCOOL QingKe HuangYou', cursive;
 }
 
 
+#resBuenas{
+    font-size: 3vw;
+    color: white;
+    margin-left: 1vw;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+}
+#textBuenas{
 
+    font-size: 3vw;
+    color: white;
+    margin-left: 10vw;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+}
 
 
 
