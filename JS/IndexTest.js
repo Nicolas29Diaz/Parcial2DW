@@ -3,7 +3,7 @@ const preguntas = [
 
     {
         pregunta: "¿Cuál es el nombre real de BAD BUNNY?",
-        respuestasIncorrectas: ["Juan Luis Londoño Arias", ".Nick Rivera Caminero", "William Omar Landrón Rivera"],
+        respuestasIncorrectas: ["Juan Luis Londoño Arias", "Nick Rivera Caminero", "William Omar Landrón Rivera"],
         respuestaCorrecta:["Benito Antonio Martínez Ocasio"]
     },
     {
@@ -66,7 +66,9 @@ let preguntasHechas = new Array();
 preguntasHechas = new Array(0)
 let indexPregunta;
 let contPreguntas = 0;
+let rellenoBarra = 0;
 preguntar();
+getDocumet("resMalas").innerHTML = `${resIncorrectas}/${cantidadMaxMalas}`;
 
 function verificarQueNoSeRepita(){
     let bool;
@@ -88,6 +90,12 @@ function verificarQueNoSeRepita(){
 function preguntar(){
   
     if(contPreguntas == cantidadPreg){
+            getDocumet("rellenoBarraProgreso").style.width = `${rellenoBarra}%`;
+          //getDocumet("rellenoBarraProgreso").innerHTML = `${rellenoBarra}%`;
+          if(rellenoBarra == 100){
+            getDocumet("rellenoBarraProgreso").style.borderRadius = `15px`;
+          }
+          rellenoBarra += 10;
         console.log("FIN")
         acabarTest();
     }else{
@@ -118,12 +126,15 @@ function preguntar(){
           getDocumet("res4").innerHTML = juntarRespuestas[3];
       
           cerrarVentana();    
-          contPreguntas++;   
+          contPreguntas++;
+          getDocumet("rellenoBarraProgreso").style.width = `${rellenoBarra}%`;
+          if(rellenoBarra == 100){
+            getDocumet("rellenoBarraProgreso").style.borderRadius = `15px`;
+          }
+          rellenoBarra += 10;
           console.log(contPreguntas)
         }
     }
-    
-   
     
 }
 
@@ -132,12 +143,12 @@ function botonOprimido(i){
     if(juntarRespuestas[i] == preguntas[indexPregunta].respuestaCorrecta[0]){
         console.log("Correcto");
         resCorrectas++;
-        getDocumet("resBuenas").innerHTML = resCorrectas;
+        
         retroalimentacion = "Correcto!";
         abrirVentana();
     }else{
         resIncorrectas++;
-        getDocumet("resMalas").innerHTML = resIncorrectas;
+        getDocumet("resMalas").innerHTML = `${resIncorrectas}/${cantidadMaxMalas}`;
         console.log("Mala");
         if(cantidadMaxMalas == resIncorrectas){
             console.log("Perdiste")

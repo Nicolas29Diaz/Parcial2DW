@@ -1,6 +1,8 @@
 /* Para probar fuentes */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 /* font-family: 'Open Sans', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap');
+/* font-family: 'ZCOOL QingKe HuangYou', cursive; */
 
 body{
     margin: 0;
@@ -117,10 +119,60 @@ section{
 }
 
 
-
+/* Para barra progreso */
 
 .contContador{
-    border: solid red;
+    border: solid rgb(255, 255, 255);
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 50px;
+    
+    width: 80%;
+    margin: auto;
+    margin-bottom: 5%;
+
+}
+
+#barraProgreso{
+    display: flex;
+    border: solid rgb(255, 255, 255);
+    border-radius: 15px;
+    width: 20%;
+    height: 2vw;
+    margin-left:3%;
+}
+
+#rellenoBarraProgreso{
+    
+    color: white;
+    background-color: white;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    height: 100%;
+    transition: all 0.3s;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+}
+#textProgreso{
+    font-size: 3vw;
+    color: white;
+    margin-left: 1vw;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+}
+#resMalas{
+    font-size: 3vw;
+    color: white;
+    margin-left: 1vw;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+}
+#textMalas{
+
+    font-size: 3vw;
+    color: white;
+    margin-left: 30vw;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
 }
 
 
