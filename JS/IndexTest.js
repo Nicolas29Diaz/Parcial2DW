@@ -54,7 +54,24 @@ const preguntas = [
   
 
 ]
+class HighScore{
+    constructor(nombreUsuario, score, tiempo){
+        this.nombreUsuario = nombreUsuario;
+        this.score = score;
+        this.tiempo = tiempo;
+    }
+}
 
+let score = new Array();
+score = new Array(0)
+leerLocalStorageHighScore()
+let pararTiempo = false;
+let seg = 0;
+let min = 0;
+let tiempoTotalFinal;
+let temporizador = getDocumet("temporizador");
+let letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+let codigoCupon;
 let resCorrectas = 0;
 let resIncorrectas = 0;
 let cantidadPreg = preguntas.length;
@@ -67,9 +84,15 @@ preguntasHechas = new Array(0)
 let indexPregunta;
 let contPreguntas = 0;
 let rellenoBarra = 0;
+let overlay = document.getElementById('overlay');
+let	popup = document.getElementById('popup');
+let overlay2 = document.getElementById('overlay2');
+let	popup2 = document.getElementById('popup2');
 preguntar();
-getDocumet("resMalas").innerHTML = `${resIncorrectas}/${cantidadMaxMalas}`;
-getDocumet("resBuenas").innerHTML = `${resCorrectas}/${cantidadPreg}`;
+getDocumet("resMalas").innerHTML = `${resIncorrectas}`;
+getDocumet("resBuenas").innerHTML = `${resCorrectas}/10`;
+
+
 function verificarQueNoSeRepita(){
     let bool;
 
@@ -89,15 +112,18 @@ function verificarQueNoSeRepita(){
 
 function preguntar(){
   
-    if(contPreguntas == cantidadPreg){
+    if(contPreguntas == 10){
             getDocumet("rellenoBarraProgreso").style.width = `${rellenoBarra}%`;
-          //getDocumet("rellenoBarraProgreso").innerHTML = `${rellenoBarra}%`;
+          
           if(rellenoBarra == 100){
-            getDocumet("rellenoBarraProgreso").style.borderRadius = `15px`;
+            getDocumet("rellenoBarraProgreso").style.borderRadius = `10px`;
           }
           rellenoBarra += 10;
         console.log("FIN")
-        acabarTest();
+        pararTiempo = true;
+        ingresarNombre();
+
+
     }else{
         indexPregunta = Math.floor(Math.random() * preguntas.length);
 
@@ -146,20 +172,20 @@ function botonOprimido(i){
         
         retroalimentacion = "Correcto!";
         abrirVentana();
-        getDocumet("resBuenas").innerHTML = `${resCorrectas}/${cantidadPreg}`;
+        getDocumet("resBuenas").innerHTML = `${resCorrectas}/10`;
     }else{
         resIncorrectas++;
-        getDocumet("resMalas").innerHTML = `${resIncorrectas}/${cantidadMaxMalas}`;
+        getDocumet("resMalas").innerHTML = `${resIncorrectas}`;
         console.log("Mala");
-        if(cantidadMaxMalas == resIncorrectas){
-            console.log("Perdiste")
-            retroalimentacion = "Perdiste";
-            acabarTest();
+        // if(cantidadMaxMalas == resIncorrectas){ //Esto era para perder con x malas
+        //     console.log("Perdiste")
+        //     retroalimentacion = "Perdiste";
+        //     acabarTest();
 
-        }else{
+        // }else{
             retroalimentacion = "Incorrecto";
             abrirVentana();
-        }
+        //}
         
     }
     
@@ -178,32 +204,174 @@ function cerrarVentana(){
 
     overlay.classList.remove('active');
 	popup.classList.remove('active');
+
+    overlay2.classList.remove('active');
+	popup2.classList.remove('active');
 }
 
 function getDocumet(id){
     return document.getElementById(id);
 }
 
-
 function acabarTest(){
 
-    cerrarVentana();
-    if(cantidadMaxMalas == resIncorrectas){
-        document.getElementById("retroalimentacion").innerHTML = "Incorrecto,Perdiste";
-    }else{
-        document.getElementById("retroalimentacion").innerHTML = "Felicitaciones!Redime tu codigo de descuento";     
-    }
-
-    let cambioBoton = document.getElementById("botonContinuar");
-        cambioBoton.innerHTML = "Reiniciar"
-        cambioBoton.setAttribute("onclick","reiniciarTest()");
-        
-        overlay.classList.add('active');
-        popup.classList.add('active');
     
+    let nombre = getDocumet("nombreInput").value;
+    //Me tocó validar a la antigua
+    if(nombre == ""){
+
+    }else{
+
+        let newScore = new HighScore(nombre,resCorrectas,tiempoTotalFinal)
+        score.push(newScore);
+        console.log(score);
+    
+        guardarLocalStorageHighScore();
+    
+        cerrarVentana();
+    
+    
+        if(resIncorrectas == 0){
+            generarCupon();
+            document.getElementById("retroalimentacion").innerHTML = "Felicitaciones! Redime tu codigo de descuento:<br><br>" + codigoCupon;
+    
+        }else{
+    
+            document.getElementById("retroalimentacion").innerHTML = "Debes responder todas las preguntas correctamente para recibir el cupón";
+    
+        }
+        
+        let cambioBoton = document.getElementById("botonContinuar");
+            cambioBoton.innerHTML = "Reiniciar"
+            cambioBoton.setAttribute("onclick","reiniciarTest()");
+            
+            overlay.classList.add('active');
+            popup.classList.add('active');
+        
+    }
+   
+
+}
+
+function ingresarNombre(){
+
+    cerrarVentana();
+
+    overlay2.classList.add('active');
+    popup2.classList.add('active');
+
+
+    let cambioBoton = document.getElementById("botonContinuar2");
+    cambioBoton.innerHTML = "Continuar"
+    cambioBoton.setAttribute("onclick","acabarTest()");
+    
+
 
 }
 
 function reiniciarTest(){
     location.reload();
+}
+
+function generarCupon(){
+
+    codigoCupon = "";
+
+    for(let i = 0; i < 10; i++){
+
+        codigoCupon += letras[Math.floor(Math.random()*62)];
+        
+    }
+    
+    console.log(codigoCupon);
+    guardarLocalStorageCupon()
+   return codigoCupon;
+}
+
+function guardarLocalStorageCupon(){ 
+
+    localStorage.setItem("Cupon", JSON.stringify(codigoCupon));
+
+}
+
+window.setInterval(function(){  
+	
+    if(pararTiempo){
+        
+      
+    }else{
+
+        if(seg >= 10)
+        {
+            temporizador.innerHTML = min + ":" + seg;
+            tiempoTotalFinal = min + ":" + seg;
+        
+        }else
+        {
+            temporizador.innerHTML = min + ":0" + seg;
+            tiempoTotalFinal = min + ":0" + seg;
+        }
+            seg++;
+    
+        if(seg ==60)
+        {
+        min++;
+        seg=0;
+        }
+    }
+    
+    
+	
+
+},1000);
+
+function guardarLocalStorageHighScore(){ 
+
+    localStorage.setItem("Scores", JSON.stringify(score));
+
+}
+
+function leerLocalStorageHighScore(){
+
+    score = JSON.parse(localStorage.getItem("Scores"));
+    console.log(score);
+
+    if(score == null){
+
+        score = new Array(0);
+        console.log(score)
+
+    }else{
+
+        score.sort(function(o1,o2) 
+        {
+            if(o1.score > o2.score){
+                return -1;
+            }else if(o1.score < o2.score){
+                return 1;
+            }else{
+
+                if(o1.tiempo > o2.tiempo){
+                    return 1;
+                }else if(o1.tiempo < o2.tiempo){
+                    return -1;
+                }else{
+                    return 0;
+                }
+               
+            }
+            
+        })
+        console.log(score)
+       
+        //Los cinco primeros y ya 
+        for(let i = 0; i < score.length; i++){
+
+            getDocumet("contenedorScore").innerHTML += `<div class="score"><p>${i+1}</p><p>${score[i].nombreUsuario}</p><p>${score[i].score*10}</p><p>${score[i].tiempo}</p></div>`;
+
+        }
+
+    }
+
+
 }

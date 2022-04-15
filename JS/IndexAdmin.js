@@ -146,7 +146,7 @@ function leerLocalStorageAdmin(){
   //  try {
 
         listaArtistas = JSON.parse(localStorage.getItem("Artista"));
-       ;
+       
     if(listaArtistas == null){
 
         listaArtistas = new Array(0);
