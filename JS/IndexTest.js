@@ -142,7 +142,7 @@ function preguntar(){
               preguntas[indexPregunta].respuestaCorrecta[0]
       
           ]
-      
+          
           juntarRespuestas.sort(function() {return Math.random()-0.5});
           
           getDocumet("pregunta").innerHTML = preguntas[indexPregunta].pregunta;

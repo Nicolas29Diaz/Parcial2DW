@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" id="html2">
+<head>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inicio de Sesión</title>
+    <link rel="stylesheet" href="../CSS/StyleInicioSesion.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+    <div class="contenedor_principal">
+        <div class="recuadro_atras">
+            <div class="recuadro_login">
+                <h3>¿Ya tienes una cuenta?</h3>
+                <p>Inicia sesión para ingresar al panel administrativo</p>
+                <button id="inicio_de_sesion">Iniciar Sesión</button>
+            </div>
+            <div class="recuadro_registro">
+                <h3>Bienvenido al Panel administrativo</h3>
+                <p>Ingresa tu usuario para acceder al panel administrativo</p>
+                <!-- <button id="Registrarse">Regístrarse</button> -->
+            </div>
+        </div>
+        <div class="contenedor_formulario">
+            <form action="" class="formulario_Login">
+                <h2>Iniciar Sesión</h2>
+                <input type="text" id="Usuario" placeholder="Usuario" required>
+                <input type="password" id="password" placeholder="Contraseña"> 
+                <button type="button" id="login_boton">Ingresar</button>  
+            </form>
+        <form action="" class="formulario_registro">
+            <h2>Registrarse</h2>
+            <input type="text" id="Nombre" placeholder="Nombre">
+            <input type="text" id="Correo Electronico_registro" placeholder="Correo Electronico">
+            <input type="text" id="usuario_registro" placeholder="Usuario">
+            <input type="password" id="contraseña_registro" placeholder="Contraseña"> 
+            <button type="button" id="registro">Registrarse</button>  
+        </form>
+        </div>
+    </div>
+</main>
+    <script src="../JS/IndexInicioSesion.js"></script>
+</body>
+</html>

@@ -166,3 +166,12 @@ function leerLocalStorageAdmin(){
     
 
 }
+
+leerPassword();
+function leerPassword(){
+
+    let password = JSON.parse(localStorage.getItem("Password"));
+    console.log(`La contraseña encriptada es:${password}`);
+
+}
+
