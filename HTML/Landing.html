@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MusiCol</title>
     <link rel="stylesheet" href="../CSS/Style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 </head>
 <body>
 
@@ -434,15 +436,15 @@
           
             <div class="contForm">
                 <h1 style="text-align: center;">RESERVA TUS BOLETAS</h1>
-                <form  action="../HTML/exitoReserva.html" method="POST" target="_blank" >
+                <form  onsubmit="oprimirBoton()">
                     <p>
                         <label for="name">Nombre Completo</label><br>
                         <input type="text" id="name" name="name" required=""> 
                     </p>
                     
                     <p>
-                        <label for="id">Número de Boletas</label><br>
-                        <input type="number" id="id" name="id" required="">
+                        <label for="numBol">Número de Boletas</label><br>
+                        <input type="number" id="numBol" name="numBol" required="">
                     </p>
 
                     <p>
@@ -474,7 +476,7 @@
                     </p>
 
                     <p class="block" >
-                        <input id="enviar" type="submit" value="Enviar" onclick="oprimirBoton()">
+                        <button id="calcular" type="button" onclick="oprimirBoton()">Enviar</button>
                     </p>
                 </form>
 
@@ -521,6 +523,20 @@
         </div>
 
     </footer>
+    <!-- PARA LA VENTANA EMERGENTE DE ELIMINAR ARTISTA-->
+    <div class="overlay" id="overlay">
+
+        <div class="popup" id="popup">
+            <a id="btn-cerrar-popup" class="btn-cerrar-popup" onclick="cerrarVentana()"><i class="fas fa-times"></i></a>
+        
+            <h2 id="retroalimentacion">El valor a pagar es</h2>   
+            <br>
+            <button type="button" class="btn-submit" onclick="comprar()" id="botonComprar">Comprar</button>       
+
+            <!-- <h4 id="retroalimentacion"></h4> -->
+            
+        </div>
+    Z</div>
 
     <script src="../JS/IndexLanding.js"></script>
 </body>
