@@ -19,22 +19,35 @@ function insertarArtista(){
       
         let nombreInput = document.getElementById("nombreInput").value;
         let descInput = document.getElementById("descInput").value;
-        let imgInput = document.getElementById("imgInput");
-        let rutaIMg = "../SRC/IMG/"+ imgInput.files[0].name;
-        let spotifyInput = document.getElementById("spotifyInput").value;
-        let contArtista = document.getElementById("contArtista");
-        const newArtista = new Artista(nombreInput,descInput,rutaIMg,spotifyInput);
-    
-        contArtista.innerHTML += `<div class="artista" id="${listaArtistas.length}"><div class="nombreArtista"><h1>${newArtista.nombreArtista}</h1></div><div class="icono"><img src="../SRC/IMG/edit.png" alt="Editar" onclick="abrirVentanaEditarArtista(this)"><img src="../SRC/IMG/garbage.png" alt="Borrar" onclick="abrirVentanaBorrarArtista(this)"></div></div>`;
-        listaArtistas.push(newArtista);
-        console.log(listaArtistas);
-
-
+        if(nombreInput == ""){
             
-        
+            swal("Debe ingresar el nombre del artista","","error");
+        }else{
 
-        guardarLocalStorage();
-        cerrarVentana();
+            let rutaIMg;
+            try {
+                let imgInput = document.getElementById("imgInput");
+                rutaIMg = "../SRC/IMG/"+ imgInput.files[0].name;
+                let spotifyInput = document.getElementById("spotifyInput").value;
+                let contArtista = document.getElementById("contArtista");
+                const newArtista = new Artista(nombreInput,descInput,rutaIMg,spotifyInput);
+            
+                contArtista.innerHTML += `<div class="artista" id="${listaArtistas.length}"><div class="nombreArtista"><h1>${newArtista.nombreArtista}</h1></div><div class="icono"><img src="../SRC/IMG/edit.png" alt="Editar" onclick="abrirVentanaEditarArtista(this)"><img src="../SRC/IMG/garbage.png" alt="Borrar" onclick="abrirVentanaBorrarArtista(this)"></div></div>`;
+                listaArtistas.push(newArtista);
+                console.log(listaArtistas);
+            
+            guardarLocalStorage();
+            cerrarVentana();
+            
+            } catch (error) {
+                console.log("Error")
+                rutaIMg = "";
+                swal("Debe ingresar la imagen del artista","","error");
+
+            }
+            
+
+        }
    
 }
 
@@ -102,27 +115,25 @@ function aceptarCambioArtista(){
     listaArtistas[idArtista].nombreArtista = document.getElementById("nombreInput").value;
     listaArtistas[idArtista].descripcionArtista = document.getElementById("descInput").value;
 
-    let rutaIMg;
+    if(document.getElementById("nombreInput").value == ""){
+        swal("Debe ingresar el nombre del artista","","error");
+    }else{
+
+        let rutaIMg;
     try {
         let imgInput = document.getElementById("imgInput");
-        rutaIMg = "../SRC/IMG/"+ imgInput.files[0].name;
-       
+        rutaIMg = "../SRC/IMG/"+ imgInput.files[0].name;  
     } catch (error) {
         console.log("Error")
         rutaIMg = listaArtistas[idArtista].imgArtista;
-
     }
-   
-
     listaArtistas[idArtista].imgArtista = rutaIMg;
-    
     listaArtistas[idArtista].spotifyArtista = document.getElementById("spotifyInput").value;
-
-
-
-
     guardarLocalStorage();
     location.reload();
+    }
+
+    
 }
 
 function cerrarVentana(){
