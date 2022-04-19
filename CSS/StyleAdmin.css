@@ -323,3 +323,393 @@ textarea {
 	from { opacity: 0; }
 	to { opacity: 1; }
 }
+
+
+
+
+
+
+.contGalerias{
+    border: solid red;
+}
+
+.galeria img{
+    width: 100%;
+}
+
+.galeria{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+    border-radius: 15px;
+    margin: auto;
+    margin: 3%;
+    background-color: rgb(255, 255, 255);
+    justify-content: center;
+    align-items: center;
+    /* justify-items: center; */
+    /* border: solid red; */
+
+	transition: all 0.3s;
+}
+
+.nombreGaleria{
+    text-align: left;
+    border-radius: 15px;
+    padding-left: 10%;
+    font-size: 120%;
+
+}
+.icono{
+    display: inline-flex;
+    grid-template-columns: 1fr 1fr;
+    
+    border-radius: 15px;
+    width: 100%;
+}
+
+.icono img{
+    width: 18%;
+    height: 18%;
+    margin: auto;
+    transition: all 0.3s;
+ 
+}
+.icono img:hover{
+    width: 23%;
+    height: 23%;
+}
+
+
+@media only screen and (min-width:1283px){
+
+    .icono img{
+        width: 15%;
+        height: 15%;
+        margin: auto;
+        transition: all 0.3s;
+     
+    }
+    .icono img:hover{
+        width: 17%;
+        height: 17%;
+    }
+    
+    
+}
+
+
+@media only screen and (max-width:700px){
+
+    .icono img{
+        width: 25%;
+        height: 25%;
+        margin: auto;
+        transition: all 0.3s;
+     
+    }
+    .icono img:hover{
+        width: 28%;
+        height: 28%;
+    }
+    
+    
+}
+
+.insertarImagen{
+
+    
+    width: 100px;
+    height: 100px;
+    
+    text-align: center;
+    margin: auto;
+}
+
+
+.insertarImagen img{
+    margin-top: 10px;
+    background-color: white;
+    width: 70%;
+    height: 70%;
+    border-radius: 100%;
+    padding: 5%;
+    transition: all 0.3s;
+}
+
+.insertarImagen img:hover{
+
+    background-color: white;
+    width: 78%;
+    height: 78%;
+    border-radius: 100%;
+    padding: 5%;
+
+}
+
+
+
+
+@media only screen and (max-width:500px){
+
+	.galeria{
+		display: grid;
+		grid-template-columns: 2fr ;
+		gap: 10px;
+		border-radius: 15px;
+		margin: auto;
+		margin: 3%;
+		background-color: rgb(255, 255, 255);
+		justify-content: center;
+		align-items: center;
+		/* justify-items: center; */
+		/* border: solid red; */
+	}
+
+	.icono img{
+        width: 15%;
+        height: 15%;
+        margin: auto;
+        transition: all 0.3s;
+		padding-bottom: 5%;
+     
+    }
+    .icono img:hover{
+        width: 18%;
+        height: 18%;
+    }
+    
+}
+
+
+
+
+
+
+
+
+/* Ventana emergente (COPIAR PEGAR PARA NO MATARME)*/
+.overlay {
+	background: rgba(0,0,0,.3);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	visibility: hidden;
+    
+}
+
+.overlay.active {
+	visibility: visible;
+}
+
+.popup {
+	background: #F8F8F8;
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+	border-radius: 3px;
+	font-family: 'ZCOOL QingKe HuangYou', cursive;
+	padding: 20px;
+	text-align: center;
+	width: 600px;
+	
+	transition: .3s ease all;
+	transform: scale(0.7);
+	opacity: 0;
+
+    border-radius: 10px;
+}
+@media (max-width:700px){
+    .popup {
+        width: 300px;
+    }
+}
+.popup .btn-cerrar-popup {
+	font-size: 16px;
+	line-height: 16px;
+	display: block;
+	text-align: right;
+	transition: .3s ease all;
+	color: #BBBBBB;
+}
+
+.popup .btn-cerrar-popupG {
+	font-size: 16px;
+	line-height: 16px;
+	display: block;
+	text-align: right;
+	transition: .3s ease all;
+	color: #BBBBBB;
+}
+.popupG .btn-cerrar-popupG {
+	font-size: 16px;
+	line-height: 16px;
+	display: block;
+	text-align: right;
+	transition: .3s ease all;
+	color: #BBBBBB;
+}
+.popupG .btn-cerrar-popup {
+	font-size: 16px;
+	line-height: 16px;
+	display: block;
+	text-align: right;
+	transition: .3s ease all;
+	color: #BBBBBB;
+}
+
+
+
+
+
+.popup .btn-cerrar-popup:hover {
+	color: #000;
+}
+.popup .btn-cerrar-popupG:hover {
+	color: #000;
+}
+.popupG .btn-cerrar-popup:hover {
+	color: #000;
+}
+
+
+
+.popupG .btn-cerrar-popupG:hover {
+	color: #000;
+}
+
+.popup h3 {
+	font-size: 36px;
+	font-weight: 600;
+	margin-bottom: 10px;
+	opacity: 0;
+}
+
+.popup h4 {
+	font-size: 26px;
+	font-weight: 300;
+	margin-bottom: 40px;
+	opacity: 0;
+}
+
+.popup form .contenedor-inputs {
+	opacity: 0;
+}
+
+.popupG h3 {
+	font-size: 36px;
+	font-weight: 600;
+	margin-bottom: 10px;
+	opacity: 0;
+}
+
+.popupG h4 {
+	font-size: 26px;
+	font-weight: 300;
+	margin-bottom: 40px;
+	opacity: 0;
+}
+
+.popupG form .contenedor-inputs {
+	opacity: 0;
+}
+
+
+
+input {
+	width: 80%;
+	margin-bottom: 20px;
+	height: 30px;
+	font-size: 18px;
+	line-height: 52px;
+	text-align: center;
+	border: 1px solid #BBBBBB;
+}
+.imgInput {
+	width: 80%;
+	margin-bottom: 20px;
+	height: 50px;
+	font-size: 18px;
+	line-height: 52px;
+	text-align: center;
+	border: 1px solid #BBBBBB;
+    align-items: center;
+}
+textarea {
+	width: 80%;
+    height: 90px;
+    min-width: 80%;
+    min-height: 90px;
+	max-height: 90px;
+    max-width: 80%;
+	font-size: 18px;
+	line-height: 20px;
+	text-align: center;
+	border: 1px solid #BBBBBB;
+}
+
+.btn-submit {
+	padding: 0 20px;
+	height: 40px;
+	line-height: 40px;
+	border: none;
+	color: #fff;
+	background: #5E7DE3;
+	border-radius: 3px;
+	font-family: 'ZCOOL QingKe HuangYou', cursive;
+	font-size: 16px;
+	cursor: pointer;
+	transition: .3s ease all;
+}
+
+.btn-submit:hover {
+	background: rgba(94,125,227, .9);
+}
+
+/* ------------------------- */
+/* ANIMACIONES */
+/* ------------------------- */
+.popupG.active {	transform: scale(1); opacity: 1; }
+.popupG.active h3 { animation: entradaTitulo .2s ease .2s forwards; }
+.popupG.active h4 { animation: entradaSubtitulo .2s ease .2s forwards; }
+.popupG.active .contenedor-inputs { animation: entradaInputs 1s linear 1s forwards; }
+
+.popup.active {	transform: scale(1); opacity: 1; }
+.popup.active h3 { animation: entradaTitulo .2s ease .2s forwards; }
+.popup.active h4 { animation: entradaSubtitulo .2s ease .2s forwards; }
+.popup.active .contenedor-inputs { animation: entradaInputs 1s linear 1s forwards; }
+
+
+
+
+@keyframes entradaTitulo {
+	from {
+		opacity: 0;
+		transform: translateY(-25px);
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes entradaSubtitulo {
+	from {
+		opacity: 0;
+		transform: translateY(25px);
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes entradaInputs {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}

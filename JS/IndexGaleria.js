@@ -1,14 +1,18 @@
-let listaArtistas = new Array();
-leerLocalStorageUsuario();
+let listaGaleria = new Array();
 
+let contGaleria = document.getElementById("contGaleria");
+
+leerLocalStorageUsuario();
 function leerLocalStorageUsuario(){
 
-    listaArtistas = JSON.parse(localStorage.getItem("Artista"));
-    console.log(listaArtistas);
-    if(listaArtistas.length != 0){
-        for(let i = 0; i < listaArtistas.length; i++){
+    listaGaleria = JSON.parse(localStorage.getItem("Galeria"));
 
-            contArtista.innerHTML += `<div class="artista"><div class="contImg"><img class="imagen" src="${listaArtistas[i].imgArtista}" alt=""></div><div class="contDesc"><h1>${listaArtistas[i].nombreArtista}</h1></div></div>`
+    console.log(listaGaleria);
+
+    if(listaGaleria.length != 0){
+        for(let i = 0; i < listaGaleria.length; i++){
+
+            contGaleria.innerHTML += `<div class="galeria"><div class="contImg"><img class="imagen" src="${listaGaleria[i].imgGaleria}" alt=""></div><div class="contDesc"><h1>${listaGaleria[i].titulo}</h1></div></div>`
 
         }
     }else{

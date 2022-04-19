@@ -68,6 +68,68 @@
         </div>
 
     </div>
+
+
+
+ <!-- GALERIA -->
+    <div id="contGaleria">
+    </div>
+
+    <div class="insertarImagen">
+        <!-- <button onclick="abrirVentanaInsertarGaleria()">Img signo mas(para agregar)</button> -->
+        <img src="../SRC/IMG/imgG.png" alt="Insertar Galeria" onclick="abrirVentanaInsertarGaleria()">
+    </div>
+
+
+      <!-- PARA LA VENTANA EMERGENTE -->
+    <div class="overlay" id="overlayG">
+
+        <div class="popup" id="popupG">
+            <a href="#" id="btn-cerrar-popupG" class="btn-cerrar-popup" onclick="cerrarVentanaG()"><i class="fas fa-times"></i></a>
+        
+            <h2>TITULO</h2>
+            <input type="text" name="titulo" id="tituloInput">
+
+            <!-- <h2>DESCRIPCION</h2> -->
+            <!-- <input type="text" name="desc" id="descInput" style="height: 80px;"> -->
+            <!-- <textarea name="desc" cols="30" rows="10" id="descInput"></textarea> -->
+
+            <h2>IMAGEN</h2>
+            <input type="file" name="img" id="imgInput2" class="imgInput">
+  
+            <!-- <h2>LISTA SPOTY</h2>
+            <p>(PEGAR EL CODIGO QUE DA SPOTIFY)</p>
+            <input type="text" name="spotify" id="spotifyInput">
+            <br> -->
+            <button type="button" class="btn-submit" onclick="cerrarVentanaG()" id="botonCancelar">Cancelar</button>
+            <button type="button" class="btn-submit" onclick="aceptarCambioGaleria()" id="botonContinuarG">Aceptar</button>
+            
+
+            <!-- <h4 id="retroalimentacion"></h4> -->
+            
+        </div>
+
+    </div>
+
+    <!-- PARA LA VENTANA EMERGENTE DE ELIMINAR galeria-->
+    <div class="overlay" id="overlayG2">
+
+        <div class="popup" id="popupG2">
+            <a href="#" id="btn-cerrar-popupG" class="btn-cerrar-popup" onclick="cerrarVentanaG()"><i class="fas fa-times"></i></a>
+        
+            <h2>Seguro que desea eliminar la galeria?</h2>
+            
+            <br>
+            <button type="button" class="btn-submit" onclick="cerrarVentanaG()" id="botonCancelar">No</button>
+            <button type="button" class="btn-submit" onclick="borrarGaleria()" id="botonContinuarG">Si</button>
+            
+
+            <!-- <h4 id="retroalimentacion"></h4> -->
+            
+        </div>
+
+    </div>
+
     
     <script src="../JS/IndexAdmin.js"></script>
 </body>

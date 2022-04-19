@@ -178,6 +178,180 @@ function leerLocalStorageAdmin(){
 
 }
 
+// GALERIA 
+
+class Galeria{
+    constructor(titulo, imgGaleria){
+        this.titulo = titulo;
+        this.imgGaleria = imgGaleria;
+        
+    }
+   
+
+}
+
+let listaGaleria = new Array();
+
+leerLocalStorageAdminGaleria();
+
+function insertarImagen(){
+
+       
+      
+        let tituloInput = document.getElementById("tituloInput").value;
+               if(tituloInput == ""){
+            
+            swal("Debe ingresar el titulo","","error");
+        }else{
+
+            let rutaIMgg;
+            // try {
+                let imgInput = document.getElementById("imgInput2");
+                rutaIMgg = "../SRC/IMG/"+ imgInput.files[0].name;
+               
+                let contGaleria = document.getElementById("contGaleria");
+                const newImg = new Galeria(tituloInput,rutaIMgg);
+            
+                contGaleria.innerHTML += `<div class="Galeria" id="${listaGaleria.length}"><div class="titulo"><h1>${newImg.titulo}</h1></div><div class="icono"><img src="../SRC/IMG/edit.png" alt="Editar" onclick="abrirVentanaEditarGaleria(this)"><img src="../SRC/IMG/garbage.png" alt="Borrar" onclick="abrirVentanaBorrarGaleria(this)"></div></div>`;
+                listaGaleria.push(newImg);
+                console.log(listaGaleria);
+            
+
+            guardarLocalStorageGaleria();
+            cerrarVentanaG();
+            location.reload();
+
+            
+            // } catch (error) {
+            //     console.log("Error")
+            //     rutaIMgg = "";
+            //     swal("Debe ingresar una imagen","","error");
+
+            // }
+            
+
+        }
+   
+}
+
+
+let overlayG = document.getElementById('overlayG');
+let	popupG = document.getElementById('popupG');
+let overlayG2 = document.getElementById('overlayG2');
+let	popupG2 = document.getElementById('popupG2');
+let idGaleria = 0;  
+
+function abrirVentanaEditarGaleria(cont){
+
+    //PARA QUE EL BOTON CAMBIE A INVOCAR ACEPTAR CAMBIO Galeria
+    let cambioBoton = document.getElementById("botonContinuarG");
+    cambioBoton.setAttribute("onclick","aceptarCambioGaleria()");
+
+    idGaleria = cont.parentNode.parentNode.id;
+    document.getElementById("tituloInput").value = listaGaleria[idGaleria].titulo;
+    document.getElementById("imgInput").value = null;
+   
+    overlayG.classList.add('active');
+	popupG.classList.add('active');
+    
+    console.log(idGaleria);
+
+}
+
+function abrirVentanaInsertarGaleria(){
+    //PARA QUE EL BOTON CAMBIE A INVOCAR INSERTAR Galeria
+    let cambioBoton = document.getElementById("botonContinuarG");
+    cambioBoton.setAttribute("onclick","insertarImagen()");
+    //Limpiar inputs
+    document.getElementById("tituloInput").value = "";
+    document.getElementById("imgInput").value = null;
+    overlayG.classList.add('active');
+	popupG.classList.add('active');
+}
+function abrirVentanaBorrarGaleria(cont){
+
+    idGaleria = cont.parentNode.parentNode.id;
+    overlayG2.classList.add('active');
+	popupG2.classList.add('active');
+}
+
+function borrarGaleria(){
+
+    let galeriahtml = document.getElementsByClassName('galeria');
+    galeriahtml[idGaleria].remove(); //Borrar html
+    listaGaleria.splice(idGaleria, 1); //Borrar de la lista de galerias
+    console.log(listaGaleria) 
+
+    //PARA QUE EL ID SE ACTUAlICE COMO EL ARRAY TOCA RECARGAR LA PAGINA :V
+    guardarLocalStorageGaleria();
+    location.reload();
+
+}
+
+function aceptarCambioGaleria(){
+
+    listaGaleria[idGaleria].titulo = document.getElementById("tituloInput").value;
+    
+
+    if(document.getElementById("tituloInput").value == ""){
+        swal("Debe ingresar el titulo","","error");
+    }else{
+
+        let rutaIMgg;
+    try {
+        let imgInput = document.getElementById("imgInput");
+        rutaIMgg = "../SRC/IMG/"+ imgInput.files[0].name;  
+    } catch (error) {
+        console.log("Error")
+        rutaIMgg = listaGaleria[idGaleria].imgGaleria;
+    }
+    listaGaleria[idGaleria].imgGaleria = rutaIMgg;
+  
+    guardarLocalStorageGaleria();
+    location.reload();
+    }
+
+    
+}
+
+function cerrarVentanaG(){
+
+    overlayG.classList.remove('active');
+	popupG.classList.remove('active');
+    overlayG2.classList.remove('active');
+	popupG2.classList.remove('active');
+}
+
+
+function guardarLocalStorageGaleria(){ 
+
+    localStorage.setItem("Galeria", JSON.stringify(listaGaleria));
+
+}
+
+function leerLocalStorageAdminGaleria(){
+
+
+  //  try {
+
+    listaGaleria = JSON.parse(localStorage.getItem("Galeria"));
+       
+    if(listaGaleria == null){
+
+        listaGaleria = new Array(0);
+        console.log(listaGaleria)
+
+    }else{
+        for(let i = 0; i < listaGaleria.length; i++){
+
+            contGaleria.innerHTML += `<div class="galeria" id="${i}"><div class="titulo"><h1>${listaGaleria[i].titulo}</h1></div><div class="icono"><img src="../SRC/IMG/edit.png" alt="Editar" onclick="abrirVentanaEditarGaleria(this)"><img src="../SRC/IMG/garbage.png" alt="Borrar" onclick="abrirVentanaBorrarGaleria(this)"></div></div>`; 
+           
+         }
+    }
+    
+
+}
+
 leerPassword();
 function leerPassword(){
 
