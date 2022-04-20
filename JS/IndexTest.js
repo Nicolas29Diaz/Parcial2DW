@@ -27,29 +27,29 @@ const preguntas = [
         respuestaCorrecta:["La Última Vuelta Tour"]       
     },
     {
-        pregunta: "¿Pregunta 6?",
-        respuestasIncorrectas: ["The World Tour", "The Big Boss", "La Gasolina Tour"],
-        respuestaCorrecta:["La Última Vuelta Tour"]       
+        pregunta: "¿En que año, Romeo Santos, vocalista de la agrupación Aventura, decide separarse y lanzarse como solista?",
+        respuestasIncorrectas: ["2021", "2000", "2018"],
+        respuestaCorrecta:["2011"]       
     },
     {
-        pregunta: "¿Pregunta 7?",
-        respuestasIncorrectas: ["The World Tour", "The Big Boss", "La Gasolina Tour"],
-        respuestaCorrecta:["La Última Vuelta Tour"]       
+        pregunta: "¿Cuáles son los nombres de los integrantes de Los Tigres del Norte?",
+        respuestasIncorrectas: ["Juan, Camilo, David", "Daniel, David, Dario", "Juan y Daniel"],
+        respuestaCorrecta:["Luis, Hernán, Jorge y Eduardo Hernández y Oscar Lara"]       
     },
     {
-        pregunta: "¿Pregunta 8?",
-        respuestasIncorrectas: ["The World Tour", "The Big Boss", "La Gasolina Tour"],
-        respuestaCorrecta:["La Última Vuelta Tour"]       
+        pregunta: "¿Cuántas temporadas ha estado Andres Cepeda, como jurado del programa LA VOZ COLOMBIA?",
+        respuestasIncorrectas: ["8  Temporadas", "10  Temporadas", "5  Temporadas"],
+        respuestaCorrecta:["6  Temporadas"]       
     },
     {
-        pregunta: "¿Pregunta 9?",
-        respuestasIncorrectas: ["The World Tour", "The Big Boss", "La Gasolina Tour"],
-        respuestaCorrecta:["La Última Vuelta Tour"]       
+        pregunta: "¿Cuál es la fecha de nacimiento de Jhonny Rivera?",
+        respuestasIncorrectas: ["26 de Febrero de 1984", "2 de Marzo de 1974", "29 de Febrero de 1964"],
+        respuestaCorrecta:["23 de Febrero de 1974"]       
     },
     {
-        pregunta: "¿Pregunta 10?",
-        respuestasIncorrectas: ["The World Tour", "The Big Boss", "La Gasolina Tour"],
-        respuestaCorrecta:["La Última Vuelta Tour"]       
+        pregunta: "¿Cuál es el nombre de la pelicula donde participa Luis Alberto Posada?",
+        respuestasIncorrectas: ["El Paseo 3", "Nuevo rico, Nuevo pobre", "Escobar el patron del mal"],
+        respuestaCorrecta:["El rey del sapo"]       
     }
   
 

@@ -3,6 +3,136 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 /* font-family: 'Open Sans', sans-serif; */
+
+.header {
+    background-color: white;
+    color: white;
+    padding: 1rem 2rem;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    font-size: 130%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+}
+
+.nav-container a {
+    color: black;
+    text-decoration: none;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: ease all .5s;
+
+}
+
+@keyframes nav {
+
+    0% {
+        margin-left: -500px;
+    }
+
+    100% {
+        margin-left: 0px;
+    }
+}
+
+.titles {
+    /*font-family: 'ZCOOL QingKe HuangYou', cursive;
+    -webkit-text-stroke: 1px rgb(98, 181, 187);
+    color: transparent; 
+    text-align: center;
+    font-size: 80px;*/
+
+    height: 80px;
+    font-size: 70px;
+    font-family: 'Righteous', cursive;
+    text-shadow: 0 0 15px rgb(98, 181, 187), 0 0 10px rgb(98, 181, 187);
+    line-height: 80px;
+    text-align: center;
+    overflow: hidden;
+
+}
+
+.navigation ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+}
+
+.navigation ul li {
+    display: inline-block;
+}
+
+.navigation ul li a {
+
+    display: block;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s linear;
+    border-radius: 6px;
+
+}
+
+
+
+
+.navigation ul li a:hover {
+    background-color: rgb(98, 181, 187);
+    color: white;
+}
+
+
+
+#imgLog {
+    overflow: hidden;
+    width: 150px;
+    animation: logo 1s;
+    animation-timing-function: ease-in;
+    animation-direction: alternate;
+
+    margin: 0px;
+
+}
+
+@keyframes logo {
+
+    0% {
+        margin-left: -500px;
+    }
+
+    100% {
+        margin-left: 0px;
+    }
+}
+
+
+main{
+    padding-top: 6rem;
+    /* para correr la pagina la cantidad del nav bar */
+}
+
+
+@media only screen and (max-width:570px) {
+
+    .navigation ul {
+        display: none;
+    }
+
+    .nav-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+}
 body{
     margin: 0;
     padding: 2%;
@@ -29,7 +159,7 @@ body{
 }
 .contImg{
 
-    object-fit: contain;
+    object-fit: cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,7 +178,7 @@ iframe{
     border: 5px solid rgb(255, 255, 255); 
     border-radius: 5%;
     background-color: rgb(255, 255, 255);
-    object-fit: contain;
+    object-fit: cover;
   
 }
 

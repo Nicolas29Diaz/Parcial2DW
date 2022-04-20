@@ -12,7 +12,7 @@ function leerLocalStorageUsuario(){
     if(listaGaleria.length != 0){
         for(let i = 0; i < listaGaleria.length; i++){
 
-            contGaleria.innerHTML += `<div class="galeria"><div class="contImg"><img class="imagen" src="${listaGaleria[i].imgGaleria}" alt=""></div><div class="contDesc"><h1>${listaGaleria[i].titulo}</h1></div></div>`
+            contGaleria.innerHTML += `<div class="galeria"><div class="contImg"><img class="imagen" src="${listaGaleria[i].imgGaleria}" alt="${listaGaleria[i].alternativeText}"></div><div class="contDesc"><h1>${listaGaleria[i].titulo}</h1></div></div>`
 
         }
     }else{

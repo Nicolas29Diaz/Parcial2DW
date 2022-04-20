@@ -713,3 +713,17 @@ textarea {
 	from { opacity: 0; }
 	to { opacity: 1; }
 }
+
+
+.titulos{
+    color: white;
+	font-size: 100px;
+}
+
+.titulo{
+	text-align: left;
+    border-radius: 15px;
+    padding-left: 10%;
+    font-size: 120%;
+}
+

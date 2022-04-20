@@ -181,10 +181,10 @@ function leerLocalStorageAdmin(){
 // GALERIA 
 
 class Galeria{
-    constructor(titulo, imgGaleria){
+    constructor(titulo, imgGaleria, alternativeText){
         this.titulo = titulo;
         this.imgGaleria = imgGaleria;
-        
+        this.alternativeText = alternativeText;
     }
    
 
@@ -199,20 +199,24 @@ function insertarImagen(){
        
       
         let tituloInput = document.getElementById("tituloInput").value;
-               if(tituloInput == ""){
+        let alternative = document.getElementById("textAlt").value;
+
+               if(tituloInput == "" || alternative == ""){
             
-            swal("Debe ingresar el titulo","","error");
+            swal("Debe ingresar el titulo y el texto alternativo","","error");
         }else{
 
             let rutaIMgg;
-            // try {
+             try {
                 let imgInput = document.getElementById("imgInput2");
                 rutaIMgg = "../SRC/IMG/"+ imgInput.files[0].name;
                
                 let contGaleria = document.getElementById("contGaleria");
-                const newImg = new Galeria(tituloInput,rutaIMgg);
+                const newImg = new Galeria(tituloInput,rutaIMgg,alternative);
             
                 contGaleria.innerHTML += `<div class="Galeria" id="${listaGaleria.length}"><div class="titulo"><h1>${newImg.titulo}</h1></div><div class="icono"><img src="../SRC/IMG/edit.png" alt="Editar" onclick="abrirVentanaEditarGaleria(this)"><img src="../SRC/IMG/garbage.png" alt="Borrar" onclick="abrirVentanaBorrarGaleria(this)"></div></div>`;
+
+        
                 listaGaleria.push(newImg);
                 console.log(listaGaleria);
             
@@ -222,12 +226,12 @@ function insertarImagen(){
             location.reload();
 
             
-            // } catch (error) {
-            //     console.log("Error")
-            //     rutaIMgg = "";
-            //     swal("Debe ingresar una imagen","","error");
+            } catch (error) {
+                console.log("Error")
+                rutaIMgg = "";
+                swal("Debe ingresar una imagen","","error");
 
-            // }
+            }
             
 
         }
@@ -249,7 +253,8 @@ function abrirVentanaEditarGaleria(cont){
 
     idGaleria = cont.parentNode.parentNode.id;
     document.getElementById("tituloInput").value = listaGaleria[idGaleria].titulo;
-    document.getElementById("imgInput").value = null;
+    document.getElementById("imgInput2").value = null;
+    document.getElementById("textAlt").value = listaGaleria[idGaleria].alternativeText;
    
     overlayG.classList.add('active');
 	popupG.classList.add('active');
@@ -262,11 +267,13 @@ function abrirVentanaInsertarGaleria(){
     //PARA QUE EL BOTON CAMBIE A INVOCAR INSERTAR Galeria
     let cambioBoton = document.getElementById("botonContinuarG");
     cambioBoton.setAttribute("onclick","insertarImagen()");
+
     //Limpiar inputs
     document.getElementById("tituloInput").value = "";
     document.getElementById("imgInput").value = null;
     overlayG.classList.add('active');
 	popupG.classList.add('active');
+
 }
 function abrirVentanaBorrarGaleria(cont){
 
@@ -291,6 +298,7 @@ function borrarGaleria(){
 function aceptarCambioGaleria(){
 
     listaGaleria[idGaleria].titulo = document.getElementById("tituloInput").value;
+    listaGaleria[idGaleria].alternativeText = document.getElementById("textAlt").value;
     
 
     if(document.getElementById("tituloInput").value == ""){
@@ -299,12 +307,13 @@ function aceptarCambioGaleria(){
 
         let rutaIMgg;
     try {
-        let imgInput = document.getElementById("imgInput");
+        let imgInput = document.getElementById("imgInput2");
         rutaIMgg = "../SRC/IMG/"+ imgInput.files[0].name;  
     } catch (error) {
         console.log("Error")
         rutaIMgg = listaGaleria[idGaleria].imgGaleria;
     }
+
     listaGaleria[idGaleria].imgGaleria = rutaIMgg;
   
     guardarLocalStorageGaleria();
