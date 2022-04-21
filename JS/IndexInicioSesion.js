@@ -76,6 +76,7 @@ function Login() {
     usuario = document.getElementById("Usuario").value;
     password = document.getElementById("password").value;
     password_encrip = btoa(password);
+    
 
     if(usuario == ""){
         // alert("Ingrese su usuario");
@@ -97,9 +98,33 @@ function Login() {
 
     }
 
+    // password_encrip = encript();
+    // guardarContraseñaEncriptada();
     
 }
 
 function guardarContraseñaEncriptada(){
     localStorage.setItem("Password", JSON.stringify(password_encrip));
 }
+
+
+//OTRO METODO
+// let letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+// function encript(){
+
+
+//     for(let i = 0; i < password.length; i++){
+
+//         // palabra = palabra + letras[Math.floor(Math.random()*62)];
+//         console.log("Letra " + password[i])
+//         password = password.replace(password[i],letras[Math.floor(Math.random()*62)])
+        
+        
+//         console.log("Letra " + password[i])
+//     }
+
+//     console.log("Plabra con funcion propia: " + password);
+
+//     return  password;
+// }
+
