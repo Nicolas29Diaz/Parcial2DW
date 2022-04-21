@@ -343,7 +343,7 @@ hr {
     background-position: center;
     background-size: cover;
     color: rgb(0, 0, 0);
-    text-shadow: 0px 8px 10px #000000;
+    text-shadow: 0px 2px 4px #000000;
     border-radius: 20px;
 
 }
